@@ -10,7 +10,7 @@ Use your favorite Vim or Neovim plugin manager to add BuildScript Plugin. With [
 
 You need a file called build_script.json at the root of your project or a package.json.
 In build_script.json file, you can list script commands like in a package.json file :
-```
+```json
 {
     "dev": "cargo run"
 }
