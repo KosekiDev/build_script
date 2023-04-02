@@ -12,11 +12,12 @@ First, you need install [ToggleTerm](https://github.com/akinsho/toggleterm.nvim)
 
 You need a file called build_script.json at the root of your project or a package.json.
 In build_script.json file, you can list script commands like in a package.json file :
+
 ```json
 {
-    "scripts": {
-        "dev": "cargo run"
-    }
+  "scripts": {
+    "dev": "cargo run"
+  }
 }
 ```
 
