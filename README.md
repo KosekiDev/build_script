@@ -21,3 +21,5 @@ In build_script.json file, you can list script commands like in a package.json f
 ```
 
 Just call :OpenBuildScripts command and choose the build script that you want to execute.
+
+Note : If only one command is defined in the configuration file, the command will run automatically.

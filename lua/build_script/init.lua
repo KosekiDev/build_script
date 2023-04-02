@@ -40,6 +40,11 @@ function M.open_quicklist()
 		return nil
 	end
 
+	if #commands == 1 then
+		require("toggleterm").exec(commands[1], 1, 12)
+		return nil
+	end
+
 	vim.ui.select(commands, {
 		prompt = "Choose command to run",
 		format_item = function(item)
@@ -51,7 +56,6 @@ function M.open_quicklist()
 		end
 
 		require("toggleterm").exec(choice, 1, 12)
-		vim.o.expandtab = false
 	end)
 end
 
