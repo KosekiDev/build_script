@@ -11,7 +11,7 @@ Use your favorite Vim or Neovim plugin manager to add BuildScript Plugin. With [
 First, you need install [ToggleTerm](https://github.com/akinsho/toggleterm.nvim) plugin.
 
 You need a file called build_script.json at the root of your project or a package.json.
-In build_script.json file, you can list script commands like in a package.json file :
+In build_config.json file, you can list script commands like in a package.json file :
 
 ```json
 {
