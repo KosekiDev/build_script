@@ -13,6 +13,9 @@ local function read_config_file()
 	local package_json_path = find_file_path("package.json")
 
 	if not build_config_path and not package_json_path then
+		print(
+			"No config file found. You must have a file named package.json or build_config.json at the root of your project."
+		)
 		return nil
 	end
 
