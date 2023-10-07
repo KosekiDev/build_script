@@ -56,7 +56,7 @@ Just call :OpenBuildScripts command and choose the build script that you want to
 
 Note : If only one command is defined in the configuration file, the command will run automatically.
 
-Another exemple for Tmux users (create a new window with the command):
+Another example for Tmux users (create a new window with the command):
 
 ```lua
 { 
