@@ -1,4 +1,7 @@
-local M = {}
+local M = {
+	-- prefix option add a prefix to the command defined in a package.json file.
+	package_json_prefix = "npm run ",
+}
 
 local function find_file_path(file_name)
 	return vim.fs.find(file_name, {
@@ -6,6 +9,10 @@ local function find_file_path(file_name)
 		stop = vim.loop.os_homedir(),
 		path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
 	})[1]
+end
+
+local function isSettingUp()
+	return M.callback ~= nil
 end
 
 local function read_config_file()
@@ -29,14 +36,31 @@ local function read_config_file()
 		end
 	else
 		for i, _ in pairs(json["scripts"]) do
-			table.insert(commands_text, "npm run " .. i)
+			table.insert(commands_text, M.package_json_prefix .. i)
 		end
 	end
 
 	return commands_text
 end
 
+function M.setup(options)
+	-- executor_callback define a callback function that take the choosen command to execute.
+	-- Then, user can do what he want with this command. Execute it with toggleterm, open new
+	-- tmux session etc...
+	M.callback = options.executor_callback
+
+	-- prefix option add a prefix to the command defined in a package.json file.
+	if options.package_json_prefix then
+		M.package_json_prefix = options.package_json_prefix
+	end
+end
+
 function M.open_quicklist()
+	if not isSettingUp() then
+		print("You must define the executor_callback function in the setup of build_script plugin to use it")
+		return nil
+	end
+
 	local commands = read_config_file()
 
 	if not commands then
@@ -44,7 +68,8 @@ function M.open_quicklist()
 	end
 
 	if #commands == 1 then
-		require("toggleterm").exec(commands[1], 1, 12)
+		M.callback(commands[1])
+
 		return nil
 	end
 
@@ -58,7 +83,7 @@ function M.open_quicklist()
 			return nil
 		end
 
-		require("toggleterm").exec(choice, 1, 12)
+		M.callback(choice)
 	end)
 end
 

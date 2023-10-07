@@ -4,11 +4,36 @@ A plugin to provide a quicklist to execute build script
 
 ## Installation
 
-Use your favorite Vim or Neovim plugin manager to add BuildScript Plugin. With [lazy.vim](https://github.com/folke/lazy.nvim), just add this line to your plugin configuration: `{"https://github.com/KosekiDev/build_script"},`.
+Use your favorite Vim or Neovim plugin manager to add BuildScript Plugin.
+With [lazy.vim](https://github.com/folke/lazy.nvim) :
+
+`{
+    "KosekiDev/build_script",
+    opts = {
+        executor_callback = function(command)
+		    require("toggleterm").exec(command, 1, 12)
+        end,
+        package_json_prefix = "npm run " -- optionnal
+    }
+}`
 
 ## Usage
 
-First, you need install [ToggleTerm](https://github.com/akinsho/toggleterm.nvim) plugin.
+You must define the executor_callback in the setup function.
+This callback will be executed when you choosed a command to execute.
+This callback must have a parameter that get the choosen command.
+
+Ex with toggleterm plugin :
+
+`{
+    "KosekiDev/build_script",
+    opts = {
+        executor_callback = function(command)
+		    require("toggleterm").exec(command, 1, 12)
+        end,
+        package_json_prefix = "npm run " -- optionnal
+    }
+}`
 
 You need a file called build_config.json at the root of your project or a package.json.
 In build_config.json file, you can list script commands like in a package.json file :

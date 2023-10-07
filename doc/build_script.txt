@@ -1,0 +1,93 @@
+*build_script.txt*                              Project's build script quicklist
+
+==============================================================================
+Table of Contents                               *build_script-table-of-contents*
+
+1. Installation                                      |build_script-installation|
+2. Usage                                                    |build_script-usage|
+3. Configuration                                    |build_script-configuration|
+
+==============================================================================
+1. Installation                                      *build_script-installation*
+
+lazy.vim <https://github.com/folke/lazy.nvim>
+
+>lua
+    { "KosekiDev/build_script",
+      opts = {
+        executor_callback = function (command)
+          -- Do what you want
+        end
+      }
+    }
+<
+
+
+==============================================================================
+2. Usage                                                    *build_script-usage*
+
+Open build script quicklist with :
+>vim
+    :OpenBuildScripts
+<
+
+build_script should find your package.json at the root of your project if you have it.
+The plugin add "npm run " before each command, but you can change it with
+the package_json_prefix option :
+
+>lua
+    { "KosekiDev/build_script",
+      opts = {
+        executor_callback = function (command)
+          -- Do what you want
+        end,
+        package_json_prefix = "" -- remove the prefix
+        package_json_prefix = "other command " -- add "other command " before each command
+      }
+    }
+<
+
+
+If you don't have package.json file, you can create a build_config.json file like this :
+
+>json
+    {
+      "scripts": {
+        "dev": "cargo run"
+        "release": "cargo build --release"
+      }
+    }
+<
+
+Note : package_json_prefix don't be added before build_config.json commands
+
+==============================================================================
+2. Configuration                                    *build_script-configuration*
+
+You must call setup function to set the executor_callback function.
+This function is called when you choose a command to execute with the quicklist.
+
+Example with tmux new window that execute the command :
+>lua
+    require("build_script").setup({
+      executor_callback = function (command)
+        local tmux_cmd = 'silent !tmux neww "' .. command .. '"'
+        vim.cmd(tmux_cmd)
+      end
+    })
+<
+
+With lazy.vim, you can just define opts object, no need to call manually the setup function.
+
+>lua
+    { 
+      "KosekiDev/build_script",
+      opts = {
+        executor_callback = function (command)
+          local tmux_cmd = 'silent !tmux neww "' .. command .. '"'
+          vim.cmd(tmux_cmd)
+        end
+      }
+    }
+<
+
