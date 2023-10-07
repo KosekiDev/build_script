@@ -2,6 +2,8 @@
 
 A plugin to provide a quicklist to execute build script
 
+![image](https://github.com/KosekiDev/build_script/assets/62622114/fcdc5015-428f-49f4-865a-6f607d7d0dbf)
+
 ## Installation
 
 Use your favorite Vim or Neovim plugin manager to add BuildScript Plugin.
