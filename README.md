@@ -6,7 +6,7 @@ A plugin to provide a quicklist to execute build script
 
 ## Installation
 
-Use your favorite Vim or Neovim plugin manager to add BuildScript Plugin.
+Use your favorite Neovim plugin manager to add BuildScript Plugin.
 With [lazy.vim](https://github.com/folke/lazy.nvim) :
 
 ```lua
