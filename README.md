@@ -7,7 +7,8 @@ A plugin to provide a quicklist to execute build script
 Use your favorite Vim or Neovim plugin manager to add BuildScript Plugin.
 With [lazy.vim](https://github.com/folke/lazy.nvim) :
 
-`{
+```lua
+{
     "KosekiDev/build_script",
     opts = {
         executor_callback = function(command)
@@ -15,7 +16,8 @@ With [lazy.vim](https://github.com/folke/lazy.nvim) :
         end,
         package_json_prefix = "npm run " -- optionnal
     }
-}`
+}
+```
 
 ## Usage
 
@@ -25,7 +27,8 @@ This callback must have a parameter that get the choosen command.
 
 Ex with toggleterm plugin :
 
-`{
+```lua
+{
     "KosekiDev/build_script",
     opts = {
         executor_callback = function(command)
@@ -33,7 +36,8 @@ Ex with toggleterm plugin :
         end,
         package_json_prefix = "npm run " -- optionnal
     }
-}`
+}
+```
 
 You need a file called build_config.json at the root of your project or a package.json.
 In build_config.json file, you can list script commands like in a package.json file :
