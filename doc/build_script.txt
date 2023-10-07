@@ -91,3 +91,33 @@ With lazy.vim, you can just define opts object, no need to call manually the set
     }
 <
 
+You can also call the open_quicklist function with the callback to run.
+
+Example :
+
+>lua
+{
+    "KosekiDev/build_script",
+    opts = {
+        executor_callback = function(command)
+            require("toggleterm").exec(command, 1, 12)
+        end,
+        keys = {
+            { "<leader>bs", "<cmd>silent :OpenBuildScripts<CR>", { desc = "Open project's build script quicklist" } },
+            {
+                "<leader>cbs",
+                function()
+                    require("build_script").open_quicklist(function(command)
+                        -- Execute what you want like open a new tmux window with this command
+                        -- This overrides the default executor_callback
+                        local tmux_cmd = 'silent !tmux neww "' .. command .. '"'
+                        vim.cmd(tmux_cmd)
+                    end
+                end,
+                { desc = "Open project's build script quicklist" }
+            },
+        },
+    }
+}
+<
+
