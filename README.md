@@ -55,3 +55,17 @@ In build_config.json file, you can list script commands like in a package.json f
 Just call :OpenBuildScripts command and choose the build script that you want to execute.
 
 Note : If only one command is defined in the configuration file, the command will run automatically.
+
+Another exemple for Tmux users (create a new window with the command):
+
+```lua
+{ 
+  "KosekiDev/build_script",
+  opts = {
+    executor_callback = function (command)
+      local tmux_cmd = 'silent !tmux neww "' .. command .. '"'
+      vim.cmd(tmux_cmd)
+    end
+  }
+}
+```
