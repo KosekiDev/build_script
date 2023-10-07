@@ -14,7 +14,7 @@ With [lazy.vim](https://github.com/folke/lazy.nvim) :
     "KosekiDev/build_script",
     opts = {
         executor_callback = function(command)
-		    require("toggleterm").exec(command, 1, 12)
+	    require("toggleterm").exec(command, 1, 12)
         end,
         package_json_prefix = "npm run " -- optionnal
     }
@@ -34,7 +34,7 @@ Ex with toggleterm plugin :
     "KosekiDev/build_script",
     opts = {
         executor_callback = function(command)
-		    require("toggleterm").exec(command, 1, 12)
+	    require("toggleterm").exec(command, 1, 12)
         end,
         package_json_prefix = "npm run " -- optionnal
     }
