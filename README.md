@@ -1,6 +1,6 @@
 # BuildScript Plugin
 
-A plugin to provide a quicklist to execute build script
+A plugin to provide a quicklist to execute build script defined in package.json or in a build_config.json file.
 
 ![image](https://github.com/KosekiDev/build_script/assets/62622114/fcdc5015-428f-49f4-865a-6f607d7d0dbf)
 
