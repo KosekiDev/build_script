@@ -56,8 +56,10 @@ function M.setup(options)
 end
 
 function M.open_quicklist(executor_callback_override)
-	if not isSettingUp() then
-		print("You must define the executor_callback function in the setup of build_script plugin to use it")
+	if not isSettingUp() and executor_callback_override == nil then
+		print(
+			"You must define the executor_callback function in the setup of build_script plugin or give callback to open_quicklis function to use it"
+		)
 		return nil
 	end
 
@@ -68,7 +70,11 @@ function M.open_quicklist(executor_callback_override)
 	end
 
 	if #commands == 1 then
-		M.callback(commands[1])
+		if executor_callback_override ~= nil then
+			executor_callback_override(commands[1])
+		else
+			M.callback(commands[1])
+		end
 
 		return nil
 	end
@@ -83,10 +89,10 @@ function M.open_quicklist(executor_callback_override)
 			return nil
 		end
 
-		if executor_callback_override == nil then
-			M.callback(choice)
-		else
+		if executor_callback_override ~= nil then
 			executor_callback_override(choice)
+		else
+			M.callback(choice)
 		end
 	end)
 end
