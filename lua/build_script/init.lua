@@ -58,7 +58,7 @@ end
 function M.open_quicklist(executor_callback_override)
 	if not isSettingUp() and executor_callback_override == nil then
 		print(
-			"You must define the executor_callback function in the setup of build_script plugin or give callback to open_quicklis function to use it"
+			"You must define the executor_callback function in the setup of build_script plugin or give callback to open_quicklist function to use it"
 		)
 		return nil
 	end
