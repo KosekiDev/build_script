@@ -31,12 +31,12 @@ local function read_config_file()
 	local json = vim.json.decode(file_json)
 
 	if build_config_path then
-		for _, x in pairs(json["scripts"]) do
-			table.insert(commands_text, x)
+		for i, x in pairs(json["scripts"]) do
+			table.insert(commands_text, { i, x })
 		end
 	else
 		for i, _ in pairs(json["scripts"]) do
-			table.insert(commands_text, M.package_json_prefix .. i)
+			table.insert(commands_text, { M.package_json_prefix .. i, M.package_json_prefix .. i })
 		end
 	end
 
@@ -71,9 +71,9 @@ function M.open_quicklist(executor_callback_override)
 
 	if #commands == 1 then
 		if executor_callback_override ~= nil then
-			executor_callback_override(commands[1])
+			executor_callback_override(commands[1][2])
 		else
-			M.callback(commands[1])
+			M.callback(commands[1][2])
 		end
 
 		return nil
@@ -82,7 +82,7 @@ function M.open_quicklist(executor_callback_override)
 	vim.ui.select(commands, {
 		prompt = "Choose command to run",
 		format_item = function(item)
-			return item
+			return item[1]
 		end,
 	}, function(choice)
 		if not choice then
@@ -90,9 +90,9 @@ function M.open_quicklist(executor_callback_override)
 		end
 
 		if executor_callback_override ~= nil then
-			executor_callback_override(choice)
+			executor_callback_override(choice[2])
 		else
-			M.callback(choice)
+			M.callback(choice[2])
 		end
 	end)
 end
