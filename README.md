@@ -75,8 +75,8 @@ You can also call the open_quicklist function with the callback to run.
 
 # Example :
 
-Run the choosen command in a new tmux pane with <leader>pbs.
-Run the choosen command in a new tmux windon with <leader>bs.
+Run the choosen command in a new tmux pane with `<leader>pbs`.
+Run the choosen command in a new tmux window with `<leader>bs`.
 
 ```lua
 return {
