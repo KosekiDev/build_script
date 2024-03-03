@@ -47,7 +47,8 @@ In build_config.json file, you can list script commands like in a package.json f
 ```json
 {
   "scripts": {
-    "dev": "cargo run"
+    "dev": "cargo run",
+    "test": "cargo-watch -x test"
   }
 }
 ```
