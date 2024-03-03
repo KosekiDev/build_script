@@ -80,9 +80,9 @@ Run the choosen command in a new tmux windon with <leader>bs.
 
 ```lua
 return {
-	"KosekiDev/build_script",
-	keys = {
-		{ "<leader>bs", "<cmd>silent :OpenBuildScripts<CR>", { desc = "Open project's build script quicklist" } },
+    "KosekiDev/build_script",
+    keys = {
+        { "<leader>bs", "<cmd>silent :OpenBuildScripts<CR>", { desc = "Open project's build script quicklist" } },
 		{
 			"<leader>pbs",
 			function()
