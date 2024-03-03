@@ -72,30 +72,32 @@ Another example for Tmux users (create a new window with the command):
 
 You can also call the open_quicklist function with the callback to run.
 
-Example :
+# Example :
+
+Run the choosen command in a new tmux pane with <leader>pbs.
+Run the choosen command in a new tmux windon with <leader>bs.
 
 ```lua
-{
-    "KosekiDev/build_script",
-    opts = {
-        executor_callback = function(command)
-            require("toggleterm").exec(command, 1, 12)
-        end,
-        keys = {
-            { "<leader>bs", "<cmd>silent :OpenBuildScripts<CR>", { desc = "Open project's build script quicklist" } },
-            {
-                "<leader>cbs",
-                function()
-                    require("build_script").open_quicklist(function(command)
-                        -- Execute what you want like open a new tmux window with this command
-                        -- This overrides the default executor_callback
-                        local tmux_cmd = 'silent !tmux neww "' .. command .. '"'
-                        vim.cmd(tmux_cmd)
-                    end)
-                end,
-                { desc = "Open project's build script quicklist" }
-            },
-        },
-    }
+return {
+	"KosekiDev/build_script",
+	keys = {
+		{ "<leader>bs", "<cmd>silent :OpenBuildScripts<CR>", { desc = "Open project's build script quicklist" } },
+		{
+			"<leader>pbs",
+			function()
+				require("build_script").open_quicklist(function(command)
+					local tmux_cmd = 'silent !tmux split-window "' .. command .. '"'
+					vim.cmd(tmux_cmd)
+				end)
+			end,
+			{ desc = "Open project's build script quicklist and execute the command in a tmux pane" },
+		},
+	},
+	opts = {
+		executor_callback = function(command)
+			local tmux_cmd = 'silent !tmux neww "' .. command .. '; exec zsh"'
+			vim.cmd(tmux_cmd)
+		end,
+	},
 }
 ```
