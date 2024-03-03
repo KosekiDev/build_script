@@ -91,7 +91,7 @@ Example :
                         -- This overrides the default executor_callback
                         local tmux_cmd = 'silent !tmux neww "' .. command .. '"'
                         vim.cmd(tmux_cmd)
-                    end
+                    end)
                 end,
                 { desc = "Open project's build script quicklist" }
             },
